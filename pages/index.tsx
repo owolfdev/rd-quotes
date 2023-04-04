@@ -2,8 +2,6 @@ import Head from "next/head";
 import Image from "next/image";
 import { useState } from "react";
 
-const baseUrl = "http://localhost:3000/";
-
 interface Quote {
   author: string;
   quote: string;
@@ -48,8 +46,8 @@ const Home = ({ quoteData }: any) => {
           >
             {quoteData && (
               <>
-                <div className="relative z-10 w-7/12 pl-10">
-                  <p className="text-4xl mb-4 text-white font-semibold pr-2 drop-shadow-sm">
+                <div className="relative z-10 w-7/12 pl-10 pb-5">
+                  <p className="text-4xl mb-4 text-white font-semibold pr-2 drop-shadow-sm ">
                     {quoteData[0].quote}
                   </p>
                   <footer className="text-white font-bold text-xl">
@@ -95,7 +93,10 @@ const Home = ({ quoteData }: any) => {
   );
 };
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ req }: any) {
+  const protocol = req.headers["x-forwarded-proto"] || "http";
+  const baseUrl = `${protocol}://${req.headers.host}/`;
+
   const response = await fetch(`${baseUrl}api/quotes`);
   const data = await response.json();
   return {
