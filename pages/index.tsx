@@ -60,7 +60,7 @@ const Home = ({ quoteData }: any) => {
           >
             {quoteData && (
               <>
-                <div className="absolute bottom-0 z-10 pb-10 pl-10 sm:relative sm:w-7/12">
+                <div className="absolute bottom-0 z-10 w-full pb-16 pl-10 sm:relative sm:w-7/12">
                   <p className="pl-2 pr-2 mb-4 text-2xl font-semibold text-white bg-black bg-opacity-50 rounded sm:pl-0 sm:bg-transparent sm:text-4xl sm:drop-shadow-sm drop-shadow-2xl">
                     {randomQuote[0].quote}
                   </p>
